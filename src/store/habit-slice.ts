@@ -73,8 +73,10 @@ const habitSlice = createSlice({
         }
       }
     },
-    removeHabit: (state, action: PayloadAction<{id: string}>) => {
-      return state.filter((h) => h.id !== action.payload);
+    removeHabit: (state, action: PayloadAction<{ id: string }>) => {
+      state.habits = state.habits.filter(
+        (habit) => habit.id !== action.payload.id
+      );
     },
   },
   extraReducers: (builder) => {

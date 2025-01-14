@@ -11,7 +11,7 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import DeleteIcon from "@mui/icons-material/Delete";
-import { Habit, toggleHabit } from "../store/habit-slice";
+import { Habit, removeHabit, toggleHabit } from "../store/habit-slice";
 
 const HabitList: React.FC = () => {
   const { habits } = useSelector((state: RootState) => state.habits);
@@ -74,6 +74,9 @@ const HabitList: React.FC = () => {
                     variant="outlined"
                     color="error"
                     startIcon={<DeleteIcon />}
+                    onClick={() =>
+                      dispatch(removeHabit({ id: habit.id}))
+                    }
                   >
                     Remove
                   </Button>
@@ -87,7 +90,7 @@ const HabitList: React.FC = () => {
               <LinearProgress
                 variant="determinate"
                 value={(getStreak(habit) / 30) * 100}
-                sx={{mt: 2}}
+                sx={{ mt: 2 }}
               />
             </Box>
           </Paper>
